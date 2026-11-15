@@ -74,7 +74,7 @@ mvn test -DbaseUrl=http://127.0.0.1:8000
 
 The Selenium suite uses headless Chrome. Maven downloads dependencies on its first run. TestNG/Surefire reports are saved under `target\surefire-reports\`. CI runs these same validation and browser checks on pushes and pull requests.
 
-For expected behavior and test-case traceability, see [docs/TEST-PLAN.md](docs/TEST-PLAN.md).
+For expected behavior and test-case traceability, see [docs/TEST-PLAN.md](docs/TEST-PLAN.md). The [project guide (PDF)](../output/pdf/CovidCare_STQA_Project_Guide.pdf) explains the architecture, files, test coverage, terminology, and setup.
 
 ## Push to GitHub
 
