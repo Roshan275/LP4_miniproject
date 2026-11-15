@@ -1,0 +1,57 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+:root{font-family:'DM Sans',sans-serif;color:#19283b;background:#f4f6f8;font-synthesis:none;text-rendering:optimizeLegibility}*{box-sizing:border-box}body{margin:0;min-width:320px}.top{height:72px;border-bottom:1px solid #e0e6eb;display:flex;align-items:center;justify-content:space-between;padding:0 max(calc((100vw - 1120px)/2),24px)}.wordmark{text-decoration:none;color:#1a2d40;font:800 14px Manrope,sans-serif;letter-spacing:1px}.wordmark span{color:#0d9478}.local,.kicker{font:500 10px 'DM Mono',monospace;letter-spacing:1.3px;color:#788797}.local{display:flex;align-items:center;gap:8px}.local i{width:7px;height:7px;border-radius:50%;background:#25a581}main{max-width:1120px;margin:auto;padding:60px 24px 70px}.intro{max-width:630px;margin-bottom:34px}.kicker{color:#168c76}.intro h1{font:800 clamp(42px,7vw,68px)/1.04 Manrope,sans-serif;letter-spacing:-3px;margin:14px 0 17px}.intro h1 em{font-style:normal;color:#158a74}.intro p{max-width:520px;color:#718094;line-height:1.7;font-size:14px}.panel{background:#fff;border:1px solid #e3e8ed;border-radius:10px;box-shadow:0 6px 24px #1a30400a}.upload{padding:20px;max-width:720px}.upload form{display:grid;grid-template-columns:1fr 180px;gap:12px}.drop{min-height:128px;border:1px dashed #cbd7dc;border-radius:7px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;cursor:pointer;color:#304357}.drop:hover{border-color:#158a74;background:#f9fcfb}.upload-icon{font-size:23px;color:#168c76}.drop strong{font-size:13px}.drop small{font-size:10px;color:#8793a2}.drop input{max-width:245px;font-size:10px;color:#758392;margin-top:5px}.upload button,.button-secondary{border:0;border-radius:6px;background:#168a74;color:#fff;font-weight:600;font-size:12px;padding:0 16px;cursor:pointer}.upload button span{float:right;font-size:17px}.error{padding:12px;background:#fff0ed;color:#a44030;border-radius:5px;margin-top:12px;font-size:12px}.report-head{display:flex;align-items:end;justify-content:space-between;margin:52px 0 18px}.report-head h2{font:700 24px Manrope,sans-serif;margin:8px 0}.report-head p{font-size:11px;color:#84909f;margin:0}.button-secondary{padding:11px 14px;text-decoration:none;background:#203449}.analysis-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.analysis-card,.metadata-card{padding:19px}.card-title{display:flex;gap:12px;align-items:center;margin-bottom:15px}.number{font:500 10px 'DM Mono',monospace;color:#188a75;background:#e8f4f1;width:29px;height:29px;border-radius:6px;display:grid;place-items:center}.card-title h3{margin:0 0 3px;font:700 15px Manrope,sans-serif}.card-title p{margin:0;color:#8994a1;font-size:10px}.analysis-image{display:block;width:100%;height:210px;object-fit:contain;background:#162231;border-radius:6px}.explain{font-size:11px;line-height:1.55;color:#667589;min-height:48px}.analysis-card>a{font-size:10px;color:#168a74;text-decoration:none;font-weight:600}.metric{display:flex;justify-content:space-between;align-items:center;color:#8893a1;font-size:10px;margin:12px 0 0}.metric strong{font:500 12px 'DM Mono',monospace;color:#34485d}.metadata-card{grid-column:1/-1}.metadata-card dl{margin:0;display:grid;grid-template-columns:1fr 1fr;gap:0 22px}.metadata-card dl>div{display:grid;grid-template-columns:minmax(100px,.65fr) 1.35fr;gap:10px;padding:9px 0;border-top:1px solid #eff1f4}.metadata-card dt{font-size:10px;color:#8591a0}.metadata-card dd{font-size:10px;color:#34465a;margin:0;overflow-wrap:anywhere}.metadata-card code{font:10px 'DM Mono',monospace}.caution{margin-top:18px;padding:16px 18px;background:#fff9ec;border:1px solid #f0e5c9;border-radius:7px}.caution strong{font-size:11px;color:#806528}.caution p{margin:5px 0 0;color:#80765f;font-size:10px;line-height:1.65}footer{max-width:1120px;margin:auto;padding:19px 24px;border-top:1px solid #e0e6eb;display:flex;justify-content:space-between;color:#95a0ac;font:9px 'DM Mono',monospace;letter-spacing:.5px}@media(max-width:650px){main{padding-top:38px}.upload form{grid-template-columns:1fr}.upload button{min-height:45px}.report-head{align-items:start;gap:15px;flex-direction:column}.analysis-grid{grid-template-columns:1fr}.metadata-card{grid-column:auto}.metadata-card dl{grid-template-columns:1fr}.analysis-image{height:190px}.top{padding:0 18px}footer{font-size:8px}}
+
+/* Larger type and laptop-first report layout */
+:root{font-size:16px}
+.local,.kicker{font-size:12px}
+.wordmark{font-size:16px}
+.intro p{font-size:16px}
+.drop strong{font-size:16px}
+.drop small,.drop input{font-size:13px}
+.upload button,.button-secondary{font-size:14px}
+.error{font-size:14px}
+.report-head h2{font-size:28px}
+.report-head p{font-size:14px}
+.card-title h3{font-size:18px}
+.card-title p{font-size:13px}
+.number{font-size:12px;width:32px;height:32px}
+.explain{font-size:13px}
+.analysis-card>a{font-size:13px}
+.metric{font-size:13px}
+.metric strong{font-size:14px}
+.metadata-card dt,.metadata-card dd{font-size:13px}
+.metadata-card code{font-size:12px}
+.caution strong{font-size:14px}
+.caution p{font-size:13px}
+@media(min-width:1000px){
+  main{max-width:1320px;padding-top:38px;padding-bottom:44px}
+  .top{height:64px}
+  .intro{margin-bottom:24px}
+  .intro h1{font-size:clamp(44px,5vw,60px);margin:10px 0 12px}
+  .report-head{margin:34px 0 14px}
+  .analysis-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+  .analysis-card,.metadata-card{padding:16px}
+  .analysis-image{height:clamp(135px,16vh,190px)}
+  .metadata-card{grid-column:1/-1}
+  .metadata-card dl{grid-template-columns:repeat(3,minmax(0,1fr));gap:0 18px}
+  .metadata-card dl>div{grid-template-columns:minmax(85px,.8fr) 1.2fr;padding:7px 0}
+}
+@media(min-width:1000px) and (max-height:820px){
+  main{padding-top:24px;padding-bottom:28px}
+  .report-head{margin-top:24px}
+  .analysis-image{height:145px}
+  .card-title{margin-bottom:10px}
+  .explain{min-height:54px;margin:9px 0}
+  .metadata-card dl>div{padding:5px 0}
+}
+@media(max-width:650px){
+  .local,.kicker{font-size:10px}
+  .intro p{font-size:14px}
+  .drop strong{font-size:14px}
+  .drop small,.drop input{font-size:11px}
+  .report-head h2{font-size:23px}
+  .card-title h3{font-size:16px}
+  .metadata-card dt,.metadata-card dd{font-size:12px}
+}
+.report-actions{display:flex;gap:9px;align-items:center}.report-actions .button-secondary:first-child{background:#168a74}
+@media(max-width:650px){.report-actions{width:100%;flex-wrap:wrap}.report-actions .button-secondary{min-height:42px;display:flex;align-items:center}}

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Local digital image forensic analysis: metadata, ELA, noise and copy-move indicators.">
+  <title>PixelProof · Image Forensics</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header class="top"><a class="wordmark" href="/">PIXEL<span>PROOF</span></a><span class="local"><i></i> LOCAL ANALYSIS</span></header>
+  <main>
+    <section class="intro"><div class="kicker">DIGITAL IMAGE FORENSICS</div><h1>Look closer.<br><em>Read the evidence.</em></h1><p>Inspect image metadata and visual indicators that may warrant closer review. Analysis runs locally on this computer.</p></section>
+    <section class="upload panel">
+      <form action="{{ url_for('analyze') }}" method="post" enctype="multipart/form-data">
+        <label for="image" class="drop"><span class="upload-icon">↑</span><strong>Choose an image to examine</strong><small>JPG, PNG, TIFF, BMP or WebP · up to 20 MB</small><input id="image" name="image" type="file" accept=".jpg,.jpeg,.png,.tif,.tiff,.bmp,.webp,image/*" required></label>
+        <button type="submit">Analyze image <span>→</span></button>
+      </form>
+      {% if error %}<div class="error" role="alert">{{ error }}</div>{% endif %}
+    </section>
+    {% if report %}
+    <section class="report-head"><div><div class="kicker">ANALYSIS REPORT · {{ report.created }}</div><h2>{{ report.name }}</h2><p>{{ report.dimensions }} · {{ report.size }}</p></div><div class="report-actions"><a class="button-secondary" href="{{ url_for('evidence_receipt', token=report.token) }}">Download report for Word / PDF ↓</a><a class="button-secondary" href="{{ url_for('image_output', token=report.token, kind='original') }}" target="_blank" rel="noopener">View original ↗</a></div></section>
+    <section class="analysis-grid">
+      <article class="panel analysis-card"><div class="card-title"><span class="number">01</span><div><h3>Error Level Analysis</h3><p>JPEG recompression difference map</p></div></div><img class="analysis-image" src="{{ url_for('image_output', token=report.token, kind='ela') }}" alt="Error level analysis heatmap"><p class="explain">{{ report.analysis.ela_note }}</p><a download="ela-analysis.png" href="{{ url_for('image_output', token=report.token, kind='ela') }}">Download ELA image ↓</a></article>
+      <article class="panel analysis-card"><div class="card-title"><span class="number">02</span><div><h3>Noise consistency</h3><p>High frequency residual map</p></div></div><img class="analysis-image" src="{{ url_for('image_output', token=report.token, kind='noise') }}" alt="Noise residual heatmap"><div class="metric">Regional spread <strong>{{ report.analysis.noise.regional_spread }}</strong></div><p class="explain">{{ report.analysis.noise.interpretation }}</p><a download="noise-analysis.png" href="{{ url_for('image_output', token=report.token, kind='noise') }}">Download noise map ↓</a></article>
+      <article class="panel analysis-card"><div class="card-title"><span class="number">03</span><div><h3>Copy-move candidates</h3><p>Repeated ORB image features</p></div></div><img class="analysis-image" src="{{ url_for('image_output', token=report.token, kind='copymove') }}" alt="Potential repeated image feature matches"><div class="metric">Candidate pairs <strong>{{ report.analysis.copy_move.candidate_pairs }}</strong></div><p class="explain">{{ report.analysis.copy_move.interpretation }}</p><a download="copy-move-analysis.png" href="{{ url_for('image_output', token=report.token, kind='copymove') }}">Download feature map ↓</a></article>
+      <article class="panel metadata-card"><div class="card-title"><span class="number">04</span><div><h3>Image metadata</h3><p>Embedded EXIF and file integrity details</p></div></div><dl>{% for key, value in report.metadata.items() %}<div><dt>{{ key }}</dt><dd>{% if key == 'SHA-256' %}<code>{{ value }}</code>{% else %}{{ value }}{% endif %}</dd></div>{% endfor %}</dl></article>
+    </section>
+    <aside class="caution"><strong>Interpret with care</strong><p>These algorithms surface indicators for human review. Compression, resizing, image content and camera processing can produce similar patterns. A clean result does not prove authenticity, and a flagged result does not prove manipulation. Preserve the original file and corroborate findings with other evidence.</p></aside>
+    {% endif %}
+  </main>
+  <footer><span>PIXELPROOF · A DIGITAL FORENSICS MINIPROJECT</span><span>Runs on your machine</span></footer>
+</body>
+</html>
