@@ -1,0 +1,1 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd"><suite name="CovidCare STQA"><test name="Functional and validation tests"><classes><class name="edu.stqa.CovidCareTest"/></classes></test></suite>

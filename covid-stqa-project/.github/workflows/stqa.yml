@@ -1,0 +1,56 @@
+name: STQA browser suite
+on:
+  push:
+  pull_request:
+jobs:
+  selenium-testng:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: covid_portal
+        ports: [3306:3306]
+        options: >-
+          --health-cmd="mysqladmin ping -proot"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=10
+    env:
+      DB_HOST: 127.0.0.1
+      DB_PORT: 3306
+      DB_NAME: covid_portal
+      DB_USER: root
+      DB_PASSWORD: root
+      ADMIN_EMAIL: admin@example.com
+      ADMIN_PASSWORD: ChangeMe123!
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, pdo_mysql
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v1
+      - name: Run PHP validation tests
+        run: php tests/php/ValidationTest.php
+      - name: Initialize database
+        run: mysql -h 127.0.0.1 -uroot -proot < database/schema.sql
+      - name: Start PHP application
+        run: php -S 127.0.0.1:8000 -t public > /tmp/covidcare-php.log 2>&1 &
+      - name: Wait for application
+        run: for i in {1..30}; do curl -fsS http://127.0.0.1:8000 >/dev/null && exit 0; sleep 1; done; cat /tmp/covidcare-php.log; exit 1
+      - name: Run Selenium and TestNG suite
+        run: mvn test -DbaseUrl=http://127.0.0.1:8000
+      - name: Upload test report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: testng-surefire-report
+          path: target/surefire-reports/
